@@ -4,159 +4,83 @@ const path = require('path');
 
 async function helpCommand(sock, chatId, message) {
     const helpMessage = `
-╔═══════════════════╗
-   *🤖 ${settings.botName || 'KnightBot-MD'}*  
-   Version: *${settings.version || '2.0.5'}*
-   by ${settings.botOwner || 'Mr Unique Hacker'}
-   YT : ${global.ytch}
-╚═══════════════════╝
+┏━━━━━━━━━━━━━━━┓
+   ⚡ ${settings.botName || 'SasukeBot-MD'} ⚡
+   Version: ${settings.version || '2.0.5'}
+   Owner: ${settings.botOwner || 'Tamim'}
+   YT: ${global.ytch}
+┗━━━━━━━━━━━━━━━┛
 
-*Available Commands:*
+✨ *Available Commands* ✨
 
-╔═══════════════════╗
-🌐 *General Commands*:
-║ ➤ .help or .menu
-║ ➤ .ping
-║ ➤ .alive
-║ ➤ .tts <text>
-║ ➤ .owner
-║ ➤ .joke
-║ ➤ .quote
-║ ➤ .fact
-║ ➤ .weather <city>
-║ ➤ .news
-║ ➤ .attp <text>
-║ ➤ .lyrics <song_title>
-║ ➤ .8ball <question>
-║ ➤ .groupinfo
-║ ➤ .staff or .admins 
-║ ➤ .vv
-║ ➤ .trt <text> <lang>
-║ ➤ .ss <link>
-║ ➤ .jid
-╚═══════════════════╝ 
+🌀 General
+• .help / .menu
+• .ping | .alive
+• .tts <text> | .owner
+• .joke | .quote | .fact
+• .weather <city> | .news
+• .attp <text> | .lyrics <song>
+• .8ball <q> | .groupinfo
+• .staff | .vv | .trt <txt> <lang>
+• .ss <link> | .jid
 
-╔═══════════════════╗
-👮‍♂️ *Admin Commands*:
-║ ➤ .ban @user
-║ ➤ .promote @user
-║ ➤ .demote @user
-║ ➤ .mute <minutes>
-║ ➤ .unmute
-║ ➤ .delete or .del
-║ ➤ .kick @user
-║ ➤ .warnings @user
-║ ➤ .warn @user
-║ ➤ .antilink
-║ ➤ .antibadword
-║ ➤ .clear
-║ ➤ .tag <message>
-║ ➤ .tagall
-║ ➤ .chatbot
-║ ➤ .resetlink
-║ ➤ .welcome <on/off>
-║ ➤ .goodbye <on/off>
-╚═══════════════════╝
+🛡️ Admin
+• .ban @user | .promote @user
+• .demote @user | .mute <min>
+• .unmute | .delete | .kick @user
+• .warnings @user | .warn @user
+• .antilink | .antibadword | .clear
+• .tag <msg> | .tagall | .chatbot
+• .resetlink | .welcome on/off
+• .goodbye on/off
 
-╔═══════════════════╗
-🔒 *Owner Commands*:
-║ ➤ .mode
-║ ➤ .autostatus
-║ ➤ .clearsession
-║ ➤ .antidelete
-║ ➤ .cleartmp
-║ ➤ .setpp <reply to image>
-║ ➤ .autoreact
-╚═══════════════════╝
+👑 Owner
+• .mode | .autostatus | .clearsession
+• .antidelete | .cleartmp
+• .setpp <img> | .autoreact
 
-╔═══════════════════╗
-🎨 *Image/Sticker Commands*:
-║ ➤ .blur <image>
-║ ➤ .simage <reply to sticker>
-║ ➤ .sticker <reply to image>
-║ ➤ .tgsticker <Link>
-║ ➤ .meme
-║ ➤ .take <packname> 
-║ ➤ .emojimix <emj1>+<emj2>
-╚═══════════════════╝  
+🎨 Sticker / Image
+• .blur <img> | .simage
+• .sticker <img> | .tgsticker <link>
+• .meme | .take <packname>
+• .emojimix <em1>+<em2>
 
-╔═══════════════════╗
-🎮 *Game Commands*:
-║ ➤ .tictactoe @user
-║ ➤ .hangman
-║ ➤ .guess <letter>
-║ ➤ .trivia
-║ ➤ .answer <answer>
-║ ➤ .truth
-║ ➤ .dare
-╚═══════════════════╝
+🎮 Games
+• .tictactoe @user | .hangman
+• .guess <letter> | .trivia
+• .answer <ans> | .truth | .dare
 
-╔═══════════════════╗
-🤖 *AI Commands*:
-║ ➤ .gpt <question>
-║ ➤ .gemini <question>
-║ ➤ .imagine <prompt>
-║ ➤ .flux <prompt>
-╚═══════════════════╝
+🤖 AI
+• .gpt <q> | .gemini <q>
+• .imagine <prompt> | .flux <prompt>
 
-╔═══════════════════╗
-🎯 *Fun Commands*:
-║ ➤ .compliment @user
-║ ➤ .insult @user
-║ ➤ .flirt 
-║ ➤ .shayari
-║ ➤ .goodnight
-║ ➤ .roseday
-║ ➤ .character @user
-║ ➤ .wasted @user
-║ ➤ .ship @user
-║ ➤ .simp @user
-║ ➤ .stupid @user [text]
-╚═══════════════════╝
+🎯 Fun
+• .compliment @user | .insult @user
+• .flirt | .shayari | .goodnight
+• .roseday | .character @user
+• .wasted @user | .ship @user
+• .simp @user | .stupid @user [txt]
 
-╔═══════════════════╗
-🔤 *Textmaker*:
-║ ➤ .metallic <text>
-║ ➤ .ice <text>
-║ ➤ .snow <text>
-║ ➤ .impressive <text>
-║ ➤ .matrix <text>
-║ ➤ .light <text>
-║ ➤ .neon <text>
-║ ➤ .devil <text>
-║ ➤ .purple <text>
-║ ➤ .thunder <text>
-║ ➤ .leaves <text>
-║ ➤ .1917 <text>
-║ ➤ .arena <text>
-║ ➤ .hacker <text>
-║ ➤ .sand <text>
-║ ➤ .blackpink <text>
-║ ➤ .glitch <text>
-║ ➤ .fire <text>
-╚═══════════════════╝
+🔤 Textmaker
+• .metallic | .ice | .snow
+• .impressive | .matrix | .light
+• .neon | .devil | .purple
+• .thunder | .leaves | .1917
+• .arena | .hacker | .sand
+• .blackpink | .glitch | .fire
 
-╔═══════════════════╗
-📥 *Downloader*:
-║ ➤ .play <song_name>
-║ ➤ .song <song_name>
-║ ➤ .instagram <link>
-║ ➤ .facebook <link>
-║ ➤ .tiktok <link>
-║ ➤ .video <song name>
-║ ➤ .ytmp4 <Link>
-╚═══════════════════╝
+📥 Downloader
+• .play <song> | .song <song>
+• .instagram <link> | .facebook <link>
+• .tiktok <link> | .video <song>
+• .ytmp4 <link>
 
-╔═══════════════════╗
-💻 *Github Commands:*
-║ ➤ .git
-║ ➤ .github
-║ ➤ .sc
-║ ➤ .script
-║ ➤ .repo
-╚═══════════════════╝
+💻 Github
+• .git | .github | .sc | .script | .repo
 
-Join our channel for updates:`;
+━━━━━━━━━━━━━━━━━━━
+🔔 Join our channel for updates!
+`;
 
     try {
         const imagePath = path.join(__dirname, '../assets/bot_image.jpg');
@@ -171,22 +95,21 @@ Join our channel for updates:`;
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363161513685998@newsletter',
-                        newsletterName: 'KnightBot MD',
+                        newsletterJid: '0029VaZb8IQ9mrGc8tGETf2i@newsletter',
+                        newsletterName: 'SasukeBot MD',
                         serverMessageId: -1
                     }
                 }
             },{ quoted: message });
         } else {
-            console.error('Bot image not found at:', imagePath);
             await sock.sendMessage(chatId, { 
                 text: helpMessage,
                 contextInfo: {
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363161513685998@newsletter',
-                        newsletterName: 'KnightBot MD by Mr Unique Hacker',
+                        newsletterJid: '0029VaZb8IQ9mrGc8tGETf2i@newsletter',
+                        newsletterName: 'SasukeBot MD by Tamim',
                         serverMessageId: -1
                     } 
                 }
